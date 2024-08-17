@@ -1,0 +1,10 @@
+/*
+
+!*.uproject
+
+!Config/
+!Content/
+!Source/
+
+!.gitignore
+!README.md
