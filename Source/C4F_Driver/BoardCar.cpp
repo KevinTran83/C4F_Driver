@@ -3,6 +3,8 @@
 
 #include "BoardCar.h"
 
+#include "Kismet/GameplayStatics.h"
+
 // Sets default values for this component's properties
 UBoardCar::UBoardCar()
 {
@@ -32,3 +34,22 @@ void UBoardCar::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	// ...
 }
 
+void UBoardCar::ScanVehicle(AActor *NewVechicle)
+{
+	if (!NewVechicle->IsA(CarClass)) return;
+	APawn *vehicle = Cast<APawn>(NewVechicle);
+	TargetCar = vehicle;
+}
+
+void UBoardCar::IgnoreVehicle(AActor *Vehicle)
+{
+	if (TargetCar == Vehicle) TargetCar = nullptr;
+}
+
+void UBoardCar::BoardVehicle()
+{
+	if (TargetCar == nullptr) return;
+
+	GetOwner()->SetActorHiddenInGame(true);
+	UGameplayStatics::GetPlayerController(GetWorld(), 0)->Possess(TargetCar);
+}

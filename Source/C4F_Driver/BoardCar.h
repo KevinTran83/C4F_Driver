@@ -30,5 +30,7 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
+	UFUNCTION(BlueprintCallable) void ScanVehicle(AActor *NewVehicle);
+	UFUNCTION(BlueprintCallable) void IgnoreVehicle(AActor *Vehicle);
+	UFUNCTION(BlueprintCallable) void BoardVehicle();
 };
